@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+header {
+    background-color: #E7E9EF;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    width: 90%;
+    height: 96px;
+    margin: 20px auto;
+    border-radius: 24px;
+}
+
+.logo {
+    padding-left: 30px;
+    
+}
+
+.contact {
+    font-size: 16px;
+    padding-right: 30px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 84px;
+    width: 70%;
+    background-color: #E7E9EF;
+    border-radius: 24px;
+    padding: 50px;
+    height: 678px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    text-align: left;
+    padding-left: 40px;
+    text-align: center;
+}
+
+.text h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+}
+
+.text p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    
+}
+
+.text button {
+    background-color: #FF7236;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+   
+    align-self: flex-start;
+}
+
+.text button:hover {
+    background-color: #E6622D;
+}
+
+.image {
+   
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.image img {
+    width: 580px;
+    height: 286px;
+    border-radius: 16px;
+    display: block;
+    
+}
+
+.container2 {
+    display: grid;
+  grid-template-columns: 754px 574px;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.box {
+    background: #E7E9EF;
+    border-radius: 15px;
+    
+}
+.large {
+    height: 574px;
+    
+}
+.medium {
+    height: 374px;
+}
+.small {
+    height: 178px;
+}
+.highlighted {
+    border: 2px solid #FF7236;
+    height: 182px;
+}
+.back-button {
+    display: inline-block;
+    margin: 30px 180px;
+    color: #FF7236;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
