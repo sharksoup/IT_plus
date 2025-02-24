@@ -125,7 +125,9 @@ header {
 .box {
     background: #E7E9EF;
     border-radius: 15px;
-    
+    display: flex;
+    flex-direction: column;    
+    padding: 20px;
 }
 .large {
     height: 574px;
@@ -148,4 +150,27 @@ header {
     text-decoration: none;
     font-weight: bold;
     
+}
+/* Стили для списков */
+.sp1 { 
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    list-style: decimal;
+}
+.sp1 a {
+    color: black;
+    text-decoration: none;
+}
+.sp1 a:hover {
+    color: #E6622D;
+    text-decoration: none;
+    transition: ease-in 0.2s;
+}
+li {
+    padding: 15px;
+}
+.label1 {
+    font-size: 24px;
+    color: #FF7236;
 }
