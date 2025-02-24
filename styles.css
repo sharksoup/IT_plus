@@ -167,10 +167,77 @@ header {
     text-decoration: none;
     transition: ease-in 0.2s;
 }
-li {
+.sp1 li {
     padding: 15px;
 }
 .label1 {
     font-size: 24px;
     color: #FF7236;
+}
+/* Стили для страницы раздела */
+.theory {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #E7E9EF;
+    width: 90%;
+    padding-bottom: 20px;
+}
+.theory_label {
+    width: 100%;
+    background-color: orange;
+    font-size: 30px;
+    padding: 10px;
+    color: white;
+}
+.theory ul {
+    margin-left: 40px;
+    margin-top: 20px;
+    font-size: 20px;
+    list-style: decimal;
+}
+.theory li {
+    padding: 5px;
+}
+.theory a {
+    color: black;
+    text-decoration: none;
+}
+.theory a:hover {
+    color: #E6622D;
+    text-decoration: none;
+    transition: ease-in 0.2s;
+}
+
+.tasks {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #E7E9EF;
+    width: 90%;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+.tasks_label {
+    width: 100%;
+    background-color: orange;
+    font-size: 30px;
+    padding: 10px;
+    color: white;
+}
+.tasks ul {
+    margin-left: 40px;
+    margin-top: 20px;
+    font-size: 20px;
+    list-style: decimal;
+}
+.tasks li {
+    padding: 5px;
+}
+.tasks a {
+    color: black;
+    text-decoration: none;
+}
+.tasks a:hover {
+    color: #E6622D;
+    text-decoration: none;
+    transition: ease-in 0.2s;
 }
