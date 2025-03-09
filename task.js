@@ -1,30 +1,11 @@
-// Данные тем и заданий (должны быть такие же, как в topics.js)
+// Данные тем и заданий
 const topics = [
     {
         id: 1,
-        name: "Виды инфомрации",
+        name: "Тип информации",
         tasks: [
             {
                 id: 1,
-                question: "Установи вид информации в следующих ситуациях:",
-                type: "select", // Тип задания: выпадающий список
-                options: [
-                    { text: "Ярослава читает афишу", correct: "Визуальная" },
-                    { text: "Дима ест солёный огурец", correct: "Вкусовая" },
-                    { text: "Артём услышал вой сирены", correct: "Слуховая" },
-                    { text: "Влад прыгнул в холодный бассейн", correct: "Тактильная" },
-                    { text: "Настя наслаждается ароматом свежих булочек", correct: "Обонятельная" }
-                ],
-                userAnswers: [] // Ответы пользователя
-            }
-        ]
-    },
-    {
-        id: 2,
-        name: "Проверка слайдера",
-        tasks: [
-            {
-                id: 2,
                 question: "Установи вид информации в следующих ситуациях:",
                 type: "select", // Тип задания: выпадающий список
                 options: [
@@ -52,6 +33,7 @@ const task = topic.tasks.find(t => t.id === taskId);
 // Получаем элементы DOM
 const topicNameElement = document.getElementById('topic-name');
 const taskContainer = document.getElementById('task-container');
+const checkAnswerButton = document.getElementById('check-answer');
 const prevButton = document.getElementById('prev-task');
 const nextButton = document.getElementById('next-task');
 
@@ -60,40 +42,45 @@ function renderTask() {
     topicNameElement.textContent = topic.name;
     taskContainer.innerHTML = `<h3>Задание ${task.id}: ${task.question}</h3>`;
 
-    if (task.type === "multiple-choice") {
-        task.options.forEach(option => {
+    if (task.type === "select") {
+        task.options.forEach((option, index) => {
             taskContainer.innerHTML += `
-                <label>
-                    <input type="checkbox" name="task-${task.id}" value="${option}">
-                    ${option}
-                </label><br>
+                <div>
+                    <p>${option.text}</p>
+                    <select id="answer-${index}">
+                        <option value="">Выберите ответ</option>
+                        <option value="Визуальная">Визуальная</option>
+                        <option value="Вкусовая">Вкусовая</option>
+                        <option value="Слуховая">Слуховая</option>
+                        <option value="Тактильная">Тактильная</option>
+                        <option value="Обонятельная">Обонятельная</option>
+                    </select>
+                </div>
             `;
         });
-    } else if (task.type === "text") {
-        taskContainer.innerHTML += `
-            <input type="text" id="task-${task.id}" placeholder="Введите ответ">
-        `;
     }
-
-    taskContainer.innerHTML += `<button onclick="checkTask()">Проверить</button>`;
 }
 
 // Проверка задания
 function checkTask() {
-    if (task.type === "multiple-choice") {
-        const checkboxes = taskContainer.querySelectorAll(`input[name="task-${task.id}"]:checked`);
-        task.userAnswers = Array.from(checkboxes).map(cb => cb.value);
-        if (arraysEqual(task.userAnswers.sort(), task.correctAnswers.sort())) {
-            taskContainer.classList.add('correct');
-            taskContainer.classList.remove('incorrect');
-        } else {
-            taskContainer.classList.add('incorrect');
-            taskContainer.classList.remove('correct');
-        }
-    } else if (task.type === "text") {
-        const input = taskContainer.querySelector(`#task-${task.id}`);
-        task.userAnswer = input.value.trim();
-        if (task.userAnswer.toLowerCase() === task.correctAnswer.toLowerCase()) {
+    if (task.type === "select") {
+        task.userAnswers = [];
+        let allCorrect = true;
+
+        task.options.forEach((option, index) => {
+            const select = document.getElementById(`answer-${index}`);
+            const userAnswer = select.value;
+            task.userAnswers.push(userAnswer);
+
+            if (userAnswer !== option.correct) {
+                allCorrect = false;
+                select.style.border = "1px solid red"; // Подсветка неправильного ответа
+            } else {
+                select.style.border = "1px solid green"; // Подсветка правильного ответа
+            }
+        });
+
+        if (allCorrect) {
             taskContainer.classList.add('correct');
             taskContainer.classList.remove('incorrect');
         } else {
@@ -101,11 +88,6 @@ function checkTask() {
             taskContainer.classList.remove('correct');
         }
     }
-}
-
-// Сравнение массивов
-function arraysEqual(a, b) {
-    return a.length === b.length && a.every((val, index) => val === b[index]);
 }
 
 // Навигация по заданиям
@@ -121,17 +103,18 @@ nextButton.addEventListener('click', () => {
     }
 });
 
+// Проверка ответа
+checkAnswerButton.addEventListener('click', checkTask);
+
 // Скачивание результатов
 document.getElementById('download-results').addEventListener('click', () => {
     let textContent = `Результаты выполнения заданий по теме "${topic.name}":\n\n`;
     topic.tasks.forEach(t => {
         textContent += `Задание ${t.id}: ${t.question}\n`;
-        if (t.type === "multiple-choice") {
-            textContent += `Правильные ответы: ${t.correctAnswers.join(", ")}\n`;
-            textContent += `Ваши ответы: ${t.userAnswers.join(", ")}\n`;
-        } else if (t.type === "text") {
-            textContent += `Правильный ответ: ${t.correctAnswer}\n`;
-            textContent += `Ваш ответ: ${t.userAnswer}\n`;
+        if (t.type === "select") {
+            t.options.forEach((option, index) => {
+                textContent += `- ${option.text}: ${t.userAnswers[index] || "Нет ответа"}\n`;
+            });
         }
         textContent += "\n";
     });
