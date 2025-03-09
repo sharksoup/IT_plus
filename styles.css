@@ -262,7 +262,7 @@ header {
 }
 
 
-
+/* Динамичевские темы */
 
 .dynamic_topics {
     margin-left: 120px;
@@ -286,7 +286,7 @@ header {
     transition: ease-in 0.2s;
 }
 
-
+/* Динамичевские материалы */
 .dynamic_materials {
     margin-left: 120px;
     margin-top: 40px;
