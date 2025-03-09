@@ -2,7 +2,7 @@
 const topics = [
     {
         id: 1,
-        name: "Тип информации",
+        name: "Типы информации, 2 задания",
         tasks: [
             {
                 id: 1,
@@ -16,8 +16,21 @@ const topics = [
                     { text: "Настя наслаждается ароматом свежих булочек", correct: "Обонятельная" }
                 ],
                 userAnswers: [] // Ответы пользователя
+            },
+            {
+                id: 2,
+                question: "Информацию, достаточную для решения поставленной задачи, называют?",
+                type: "radio",
+                options: [
+                    { text: "Понятной", correct: false },
+                    { text: "Полной", correct: true }, // Правильный ответ
+                    { text: "Адекватной", correct: false },
+                    { text: "Особенной", correct: false }
+                ],
+                userAnswer: "" // Ответ пользователя
             }
         ]
+        
     }
 ];
 
@@ -60,7 +73,37 @@ function renderTask() {
         });
     }
 }
+function renderTask() {
+    topicNameElement.textContent = topic.name;
+    taskContainer.innerHTML = `<h3>Задание ${task.id}: ${task.question}</h3>`;
 
+    if (task.type === "select") {
+        task.options.forEach((option, index) => {
+            taskContainer.innerHTML += `
+                <div>
+                    <p>${option.text}</p>
+                    <select id="answer-${index}">
+                        <option value="">Выберите ответ</option>
+                        <option value="Визуальная">Визуальная</option>
+                        <option value="Вкусовая">Вкусовая</option>
+                        <option value="Слуховая">Слуховая</option>
+                        <option value="Тактильная">Тактильная</option>
+                        <option value="Обонятельная">Обонятельная</option>
+                    </select>
+                </div>
+            `;
+        });
+    } else if (task.type === "radio") {
+        task.options.forEach((option, index) => {
+            taskContainer.innerHTML += `
+                <label>
+                    <input type="radio" name="task-${task.id}" value="${option.text}" id="answer-${index}">
+                    ${option.text}
+                </label><br>
+            `;
+        });
+    }
+}
 // Проверка задания
 function checkTask() {
     if (task.type === "select") {
@@ -86,6 +129,47 @@ function checkTask() {
         } else {
             taskContainer.classList.add('incorrect');
             taskContainer.classList.remove('correct');
+        }
+    }
+    if (task.type === "select") {
+        task.userAnswers = [];
+        let allCorrect = true;
+
+        task.options.forEach((option, index) => {
+            const select = document.getElementById(`answer-${index}`);
+            const userAnswer = select.value;
+            task.userAnswers.push(userAnswer);
+
+            if (userAnswer !== option.correct) {
+                allCorrect = false;
+                select.style.border = "1px solid red";
+            } else {
+                select.style.border = "1px solid green";
+            }
+        });
+
+        if (allCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    } else if (task.type === "radio") {
+        const selectedRadio = document.querySelector(`input[name="task-${task.id}"]:checked`);
+        if (selectedRadio) {
+            task.userAnswer = selectedRadio.value;
+            const selectedOption = task.options.find(opt => opt.text === task.userAnswer);
+
+            if (selectedOption && selectedOption.correct) {
+                taskContainer.classList.add('correct');
+                taskContainer.classList.remove('incorrect');
+            } else {
+                taskContainer.classList.add('incorrect');
+                taskContainer.classList.remove('correct');
+            }
+        } else {
+            alert("Выберите ответ!");
         }
     }
 }
@@ -115,6 +199,8 @@ document.getElementById('download-results').addEventListener('click', () => {
             t.options.forEach((option, index) => {
                 textContent += `- ${option.text}: ${t.userAnswers[index] || "Нет ответа"}\n`;
             });
+        } else if (t.type === "radio") {
+            textContent += `- Ваш ответ: ${t.userAnswer || "Нет ответа"}\n`;
         }
         textContent += "\n";
     });

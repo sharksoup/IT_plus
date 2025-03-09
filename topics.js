@@ -2,28 +2,7 @@
 const topics = [
     {
         id: 1,
-        name: "Виды информации",
-        tasks: [
-            {
-                id: 1,
-                question: "Что означает аббревиатура HTML?",
-                type: "text",
-                correctAnswer: "HyperText Markup Language",
-                userAnswer: ""
-            },
-            {
-                id: 2,
-                question: "Выберите правильные теги:",
-                type: "multiple-choice",
-                options: ["<div>", "<span>", "<header>", "<footer>"],
-                correctAnswers: ["<div>", "<span>"],
-                userAnswers: []
-            }
-        ]
-    },
-    {
-        id: 2,
-        name: "Проверка слайдера",
+        name: "Типы информации",
         tasks: [
             {
                 id: 1,
