@@ -260,3 +260,57 @@ header {
 .incorrect {
     color: red;
 }
+
+
+
+
+.dynamic_topics {
+    margin-left: 120px;
+    margin-top: 40px;
+    list-style-type: none;
+    padding: 0;
+}
+.dynamic_topics li {
+    margin: 10px 0;
+    list-style: decimal;
+    margin-left: 10px;
+}
+.dynamic_topics a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+}
+.dynamic_topics a:hover {
+    color: #E6622D;
+    text-decoration: none;
+    transition: ease-in 0.2s;
+}
+
+
+.dynamic_materials {
+    margin-left: 120px;
+    margin-top: 40px;
+    list-style-type: none;
+    padding: 0;
+}
+.dynamic_materials li {
+    margin: 10px 0;
+    list-style: decimal;
+    margin-left: 10px;
+}
+.dynamic_materials a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+}
+.dynamic_materials a:hover {
+    color: #E6622D;
+    text-decoration: none;
+    transition: ease-in 0.2s;
+}
+
+.mat1_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
