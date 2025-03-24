@@ -182,7 +182,7 @@ function renderTask() {
             </div>
         `;
 
-        // Инициализация Drag and Drop
+        // Инициализация функции Drag and Drop
         initDragAndDrop();
     } else if (task.type === "drag-and-drop-order") {
         // Создаем зоны для перетаскивания

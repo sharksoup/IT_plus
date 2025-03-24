@@ -131,7 +131,7 @@ th, td {
 }
 /* Стили для кнопок навигации */
 .navigation button {
-    background-color: #3498db; /* Синий цвет */
+    background-color: #3498db;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -142,12 +142,12 @@ th, td {
 }
 
 .navigation button:hover {
-    background-color: #2980b9; /* Темно-синий при наведении */
+    background-color: #2980b9;
 }
 
 /* Стили для кнопки "Скачать результаты" */
 #download-results {
-    background-color: #28a745; /* Зеленый цвет */
+    background-color: #28a745;
     color: #fff;
     padding: 10px 20px;
     border: none;

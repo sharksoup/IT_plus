@@ -23,7 +23,7 @@ const topics = [
     }
 ];
 
-// Получаем элемент для списка тем
+// Получаем элемент для списка сущ. тем
 const topicsList = document.getElementById('topics-list');
 
 // Создаем ссылки на темы
