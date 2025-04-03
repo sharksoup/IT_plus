@@ -282,7 +282,7 @@ header {
 /* Динамичевские темы */
 
 .dynamic_topics {
-    margin-left: 120px;
+    margin-left: 200px;
     margin-top: 40px;
     list-style-type: none;
     padding: 0;
@@ -305,7 +305,7 @@ header {
 
 /* Динамичевские материалы */
 .dynamic_materials {
-    margin-left: 120px;
+    margin-left: 200px;
     margin-top: 40px;
     list-style-type: none;
     padding: 0;

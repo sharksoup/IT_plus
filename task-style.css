@@ -28,12 +28,6 @@ header {
 
 
 
-
-
-
-
-
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -42,7 +36,7 @@ body {
     color: #333;
 }
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
@@ -158,7 +152,7 @@ th, td {
 }
 
 #download-results:hover {
-    background-color: #218838; /* Темно-зеленый при наведении */
+    background-color: #218838;
 }
 
 /* Стили для кнопки "Очистить ответы" */
@@ -190,4 +184,88 @@ th, td {
 
 .answer-button:hover {
 background-color: #e0a800; /* Темно-желтый при наведении */
+}
+.info-process-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.info-process-table th, .info-process-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.info-process-table th {
+    background-color: #f2f2f2;
+}
+
+.info-process-table input {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.checkbox-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.checkbox-label:hover {
+    background-color: #f5f5f5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    min-width: 16px;
+    min-height: 16px;
+    cursor: pointer;
+}
+.hint {
+    color: #666;
+    font-size: 0.9em;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-left: 3px solid #4CAF50;
+}
+
+.explanation {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+}
+
+input[type="number"] {
+    padding: 8px;
+    width: 200px;
+    font-size: 1em;
+}
+.nav-button {
+    padding: 10px 15px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #45a049;
 }
