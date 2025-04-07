@@ -2,147 +2,177 @@
 const topics = [
     {
         id: 1,
-        name: "Подходы к измерению информации, 12 заданий",
+        name: "Устройство компьютера, 12 заданий",
         tasks: [
             {
-                id: 1,
-                question: "Расставь единицы измерения информации в порядке возрастания:",
-                type: "drag-drop-table",
-                table: {
-                    headers: [
-                        "Название единицы измерения количества информации",
-                        "Чему равна единица измерения количества информации"
-                    ],
-                    correctRows: [
-                        ["1 Тбайт", "2^10 Гбайт"],
-                        ["1 Гбайт", "2^10 Мбайт"],
-                        ["1 Мбайт", "2^10 Кбайт"],
-                        ["1 Кбайт", "2^10 байт"],
-                        ["1 байт", "8 бит"]
-                    ]
-                },
-                dragItems: [
-                    "1 байт", "1 Кбайт", "1 Мбайт", "1 Гбайт", "1 Тбайт",
-                    "8 бит", "2^10 байт", "2^10 Кбайт", "2^10 Мбайт", "2^10 Гбайт"
-                ],
-                userAnswers: Array(5).fill(["", ""])
-            },
-            {
-                id: 2,
-                question: "В электронном учебнике 128 страниц. Сергей установил закладку на 54-й странице. Какое количество информации в битах несет это сообщение?",
-                description: `
-
-                `,
-                type: "text-input",
-                correctAnswer: "7",
-                userAnswer: ""
-            },
-            {
-                id: 3,
-                question: "Запиши верные утверждения",
-                type: "checkbox-multiple",
+                id: 1, 
+                question: "Найди верные ответы. Какие устройства относятся к внутренним устройствам ПК?",
+                type: "checkbox-grid",
                 options: [
-                    { text: "Формулу для вычисления количества информации равновероятных событий вывел Клод Шеннон.", correct: true },
-                    { text: "Для кодировки 99 различных цветов используется 6-битное кодирование.", correct: false },
-                    { text: "Мощность алфавита зависит от информационного веса символа.", correct: true },
-                    { text: "С помощью вероятностного подхода можно определять количество информации в текстовом сообщении, которое состоит из символов определенного алфавита.", correct: true },
-                    { text: "Если для кодирования одного символа используется 4 бита информации, то можно закодировать 16 символов.", correct: true }
+                    { text: "клавиатура", correct: false },
+                    { text: "блок питания", correct: true },
+                    { text: "сетевая карта", correct: true },
+                    { text: "трекбол", correct: false },
+                    { text: "процессор", correct: true },
+                    { text: "сканер", correct: false }
                 ],
                 userAnswers: [] // Будет хранить индексы выбранных ответов
             },
             {
-                id: 4,
-                question: "На складе располагается 15 стеллажей. На каждом стеллаже 5 полок. Какое количество информации в битах несет сообщение, что обувь находится на нижней полке 11-го стеллажа? В ответ запиши только число.",
+                id: 2, 
+                question: "Найди верные ответы. Какие устройства относятся ко внешним устройствам ПК?",
+                type: "checkbox-grid",
+                options: [
+                    { text: "Процессор", correct: false },
+                    { text: "Камера", correct: true },
+                    { text: "Сетевая карта", correct: false },
+                    { text: "Монитор", correct: true },
+                    { text: "Микрофон", correct: true },
+                    { text: "Видеокарта", correct: false }
+                ],
+                userAnswers: [] // Будет хранить индексы выбранных ответов
+            },
+            {
+                id: 3, 
+                question: "Найди верные ответы. Какие характеристики процессора являются более значимыми?",
+                type: "checkbox-grid",
+                options: [
+                    { text: "Мощность", correct: false },
+                    { text: "Заполненность", correct: false },
+                    { text: "Ускорение", correct: false },
+                    { text: "Архитектура", correct: true },
+                    { text: "Размер чипсета", correct: false },
+                    { text: "Время", correct: false },
+                    { text: "Производительность", correct: true },
+                    { text: "Тактовая частота", correct: true }
+                ],
+                userAnswers: [] // Будет хранить индексы выбранных ответов
+            },
+            {
+                id: 4, 
+                question: "Выбери правильные ответы. Какую функцию выполняют контроллеры на материнской плате?",
+                type: "checkbox-grid",
+                options: [
+                    { text: "обеспечивают взаимодействие с периферийными устройствами", correct: true },
+                    { text: "помогают процессору", correct: false },
+                    { text: "обеспечивают хранение данных", correct: false },
+                    { text: "контролируют процессор", correct: false },
+                    { text: "контролируют скорость передачи данных по сети", correct: true }
+                ],
+                userAnswers: [],
                 description: `
-
-                `,
-                type: "text-input",
-                correctAnswer: "6",
-                userAnswer: ""
+                `
             },
             {
                 id: 5,
-                question: "Сообщение занимает 2 строки и имеет информационный объем 0,5 килобайт. На каждой строке записано 128 символов. Узнай мощность алфавита, который использовался, в ответ запиши число.",
-                description: `
-
-                `,
-                type: "text-input",
-                correctAnswer: "65536",
-                userAnswer: ""
+                question: "Что относится к основным характеристикам оперативной памяти?",
+                type: "radio",
+                options: [
+                    { text: "Масса", correct: false },
+                    { text: "Время", correct: false },
+                    { text: "Скорость работы", correct: true },
+                    { text: "Давление", correct: false }
+                ],
+                userAnswer: "",
             },
             {
                 id: 6,
-                question: "Абитуриентам вуза в личном деле присваивается индивидуальный номер, который содержит 4 цифры. Для кода могут быть использованы только цифры 1, 3, 5, 7. Номер абитуриентов уникальны. Определи максимальное число абитуриентов этого вуза, в ответ запиши только число.",
-                description: `
-
-                `,
-                type: "text-input",
-                correctAnswer: "256",
-                userAnswer: ""
+                question: "Что относится к основным характеристикам видеокарты?",
+                type: "radio",
+                options: [
+                    { text: "Масса", correct: false },
+                    { text: "Система охлаждения", correct: false },
+                    { text: "Архитектура", correct: false },
+                    { text: "Модель графического процессора", correct: true }
+                ],
+                userAnswer: "",
             },
             {
                 id: 7,
-                question: "Установи вид информации в следующих ситуациях:",
-                type: "select2",
+                question: "Выбери правильные ответы. Какие характеристики относятся к жёсткому диску?",
+                type: "checkbox-grid",
                 options: [
-                    { text: "Узнай, какое количество килобайт содержит сообщение объемом 16^15 бит. В ответе запиши показатель степени числа 2 в килобайтах.", correct: "47" },
+                    { text: "объём", correct: true },
+                    { text: "сила", correct: false },
+                    { text: "импульс", correct: false },
+                    { text: "интерфейс подключения", correct: true }
                 ],
-                userAnswers: []
-            },
-            {
-                id: 8,
-                question: "В корзине пирожки: 4 с капустой, 10 с творогом, 2 с вишней и 4 с яблоком. Посчитай количество информации в сообщении 'Зина села на пенек и съела пирожок с вишней'. Ответ запиши в числовом виде в битах ",
-                description: `
-
-                `,
-                type: "text-input",
-                correctAnswer: "3",
-                userAnswer: ""
-            },
-            {
-                id: 9,
-                question: "В полке стола лежат черные и белые бусинки. Из них 27 черных бусинок. Сообщение о том, что из полки стола достали белые бусинки, несет 2 бита информации. Узнай, сколько всего бусинок в полке стола, в ответ запиши только число.",
-                description: `
-
-                `,
-                type: "text-input",
-                correctAnswer: "36",
-                userAnswer: ""
-            },
-            {
-                id: 10,
-                question: "В вазочке находится 128 конфет: 16 карамелек, 16 леденцов, 64 шоколадки и 32 мармеладки. Какое количество информации содержится в сообщениях о том, что из вазочки случайным образом были последовательно взяты с возвратом карамелька (I₁), леденец (I₂), шоколадка (I₃) и мармеладка (I₄).",
-                type: "multiple-text-input",
-                inputs: [
-                    { label: "I₁ =", correctAnswer: "3", userAnswer: "" },
-                    { label: "I₂ =", correctAnswer: "3", userAnswer: "" },
-                    { label: "I₃ =", correctAnswer: "1", userAnswer: "" },
-                    { label: "I₄ =", correctAnswer: "2", userAnswer: "" }
-                ],
+                userAnswers: [],
                 description: `
 
                 `
+            },
+            {
+                id: 8, 
+                question: "Отметь верный ответ. Выбери принцип, которого не существует.",
+                type: "radio", // Новый тип для одиночного выбора
+                options: [
+                    { text: "принцип программного управления", correct: false },
+                    { text: "принцип однородности памяти", correct: false },
+                    { text: "принцип адресности памяти", correct: false },
+                    { text: "принцип хаотичной организации памяти", correct: true }
+                ],
+                userAnswer: null,
+                description: `
+
+                `
+            },
+            {
+                id: 9, 
+                question: "Добавь недостающее слово в предложение.",
+                description: "Любой компьютер должен содержать в себе центральный ______, внутреннюю память (оперативную), внешнюю память (постоянную), устройства ввода, а также устройства вывода.",
+                type: "fill-in-blank",
+                correctAnswer: "процессор",
+                userAnswer: "",
+                placeholder: "Введите недостающее слово",
+                alternatives: ["процессор", "процессорный", "процессорный блок"] // Допустимые варианты
+            },
+            {
+                id: 10, 
+                question: "Добавь недостающее слово в предложение.",
+                description: "Ни для кого уже не секрет, что современные компьютеры хранят всю информацию в виде ______ кода",
+                type: "fill-in-blank",
+                correctAnswer: "двоичного",
+                userAnswer: "",
+                placeholder: "Введите недостающее слово",
+                alternatives: ["Двоичного"] // Допустимые варианты
             },
             {
                 id: 11,
-                question: "В процессе регистрации в информационной системе любому гражданину некоторой страны присваивается специальный код, состоящий из 16 символов и содержит арабские цифры и символы некоторого алфавита (всего 140 символов). База данных хранит каждый код, для хранения которого выделено одинаковое и минимально допустимое целое число байт. Все символы кодируются одинаково и минимально возможным количеством бит (посимвольное кодирование). Узнай объём памяти (в Кбайт), нужный для хранения 2560 кодов.",
-                type: "text-input",
-                correctAnswer: "40",
-                userAnswer: "",
-                description: `
-                `
+                question: "Выполни задание на соответствие. Установи соответствие между номерами принципов и их названиями.",
+                type: "drag-match-table",
+                table: {
+                    headers: ["Номер принципа", "Название принципа"],
+                    rows: [
+                        { id: 1, label: "Первый", correct: "Принцип программного управления" },
+                        { id: 2, label: "Второй", correct: "Принцип двоичного кодирования" },
+                        { id: 3, label: "Третий", correct: "Принцип однородности памяти" },
+                        { id: 4, label: "Четвёртый", correct: "Принцип адресности памяти" },
+                        { id: 5, label: "Пятый", correct: "Принцип иерархической организации памяти" },
+                        { id: 6, label: "Шестой", correct: "Состав основных компонентов ПК" }
+                    ]
+                },
+                dragItems: [
+                    "Принцип однородности памяти",
+                    "Принцип управляемости процессора",
+                    "Состав основных компонентов ПК",
+                    "Принцип адресности памяти",
+                    "Принцип программного управления",
+                    "Принцип иерархической организации памяти",
+                    "Принцип двоичного кодирования"
+                ],
+                userAnswers: {}
             },
             {
-                id: 12, // Укажите следующий доступный ID
-                question: "Каждый ученик получает электронный пропуск, на котором зафиксированы следующие данные о владельце: личный код (10 символов из 23 допустимых), класс (число от 1 до 11 в двоичном коде), дополнительные сведения. Пропуск содержит 16 байт информации. Определи объём памяти, который необходим для хранения дополнительных сведений, ответ запишите в байтах.",
-                type: "text-input",
-                correctAnswer: "9",
+                id: 12, 
+                question: "Добавь недостающее слово в предложение.",
+                description: "С ростом объема памяти поиск нужной информации существенно ______",
+                type: "fill-in-blank",
+                correctAnswer: "Усложняется",
                 userAnswer: "",
-                description: `
-
-                `
+                placeholder: "Введите недостающее слово",
+                alternatives: ["усложняется"] // Допустимые варианты
             }
-            
         ]
     }
 ];
@@ -408,7 +438,114 @@ function renderTask() {
             </div>
         `;
     }
+    else if (task.type === "checkbox-grid") {
+        taskContainer.innerHTML += `
+            <div class="checkbox-grid">
+                ${task.options.map((option, index) => `
+                    <label class="checkbox-item">
+                        <input type="checkbox" 
+                               name="task-${task.id}" 
+                               value="${index}"
+                               ${task.userAnswers.includes(index) ? 'checked' : ''}>
+                        ${option.text}
+                    </label>
+                `).join('')}
+            </div>
+        `;
     
+        // Обработчик изменений
+        const checkboxes = document.querySelectorAll(`.checkbox-grid input[name="task-${task.id}"]`);
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    task.userAnswers.push(parseInt(this.value));
+                } else {
+                    task.userAnswers = task.userAnswers.filter(item => item !== parseInt(this.value));
+                }
+            });
+        });
+    }
+    else if (task.type === "fill-in-blank") {
+        taskContainer.innerHTML += `
+            <p class="fill-description">${task.description.replace('______', '<span class="blank">______</span>')}</p>
+            <div class="fill-container">
+                <input type="text" 
+                       id="fill-answer" 
+                       placeholder="${task.placeholder || 'Введите ответ'}" 
+                       value="${task.userAnswer}">
+                <button class="fill-submit">Ответить</button>
+            </div>
+        `;
+    
+        document.querySelector('.fill-submit').addEventListener('click', checkTask);
+    }
+    else if (task.type === "drag-match-table") {
+        taskContainer.innerHTML += `
+            <table class="match-table">
+                <thead>
+                    <tr>
+                        ${task.table.headers.map(h => `<th>${h}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${task.table.rows.map(row => `
+                        <tr data-row-id="${row.id}">
+                            <td>${row.label}</td>
+                            <td class="drop-zone" data-correct="${row.correct}">
+                                ${task.userAnswers[row.id] || ''}
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            <div class="drag-items-container">
+                ${task.dragItems.map(item => `
+                    <div class="drag-item" draggable="true">${item}</div>
+                `).join('')}
+            </div>
+        `;
+        
+        initDragAndDropMatch();
+    }
+}
+
+
+function initDragAndDropMatch() {
+    const dragItems = document.querySelectorAll('.drag-item');
+    const dropZones = document.querySelectorAll('.match-table .drop-zone');
+
+    dragItems.forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            e.dataTransfer.setData('text/plain', this.textContent);
+            this.classList.add('dragging');
+        });
+        
+        item.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+        });
+    });
+
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('drop-hover');
+        });
+
+        zone.addEventListener('dragleave', function() {
+            this.classList.remove('drop-hover');
+        });
+
+        zone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drop-hover');
+            
+            const data = e.dataTransfer.getData('text/plain');
+            const rowId = this.parentElement.dataset.rowId;
+            
+            this.textContent = data;
+            task.userAnswers[rowId] = data;
+        });
+    });
 }
 
 
@@ -845,17 +982,88 @@ function checkTask() {
             taskContainer.classList.remove('correct');
         }
     }
+    else if (task.type === "checkbox-grid") {
+        let allCorrect = true;
+        const checkboxes = document.querySelectorAll(`.checkbox-grid input[name="task-${task.id}"]`);
+        
+        checkboxes.forEach((checkbox, index) => {
+            const isChecked = checkbox.checked;
+            const isCorrect = task.options[index].correct;
+            const label = checkbox.parentElement;
+            
+            if (isChecked !== isCorrect) {
+                label.style.color = "red";
+                allCorrect = false;
+            } else if (isCorrect) {
+                label.style.color = "green";
+            } else {
+                label.style.color = "";
+            }
+        });
+        
+        if (allCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
+    else if (task.type === "fill-in-blank") {
+        const input = document.getElementById('fill-answer');
+        task.userAnswer = input.value.trim().toLowerCase();
+        
+        // Проверяем на соответствие основному ответу или альтернативам
+        const isCorrect = task.alternatives 
+            ? task.alternatives.some(alt => alt.toLowerCase() === task.userAnswer)
+            : task.userAnswer === task.correctAnswer.toLowerCase();
+    
+        if (isCorrect) {
+            input.style.border = "2px solid #4CAF50";
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            input.style.border = "2px solid #F44336";
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
+    else if (task.type === "drag-match-table") {
+        let allCorrect = true;
+        const dropZones = document.querySelectorAll('.match-table .drop-zone');
+    
+        dropZones.forEach(zone => {
+            const rowId = zone.parentElement.dataset.rowId;
+            const correctAnswer = zone.dataset.correct;
+            const userAnswer = task.userAnswers[rowId];
+    
+            if (userAnswer === correctAnswer) {
+                zone.style.backgroundColor = '#e8f5e9';
+            } else {
+                zone.style.backgroundColor = '#ffebee';
+                allCorrect = false;
+            }
+        });
+    
+        if (allCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
 }
 // Навигация по заданиям
 prevButton.addEventListener('click', () => {
     if (taskId > 1) {
-        window.location.href = `task1.2.html?topic=${topicId}&task=${taskId - 1}`;
+        window.location.href = `task1.3.html?topic=${topicId}&task=${taskId - 1}`;
     }
 });
 
 nextButton.addEventListener('click', () => {
     if (taskId < topic.tasks.length) {
-        window.location.href = `task1.2.html?topic=${topicId}&task=${taskId + 1}`;
+        window.location.href = `task1.3.html?topic=${topicId}&task=${taskId + 1}`;
     }
 });
 
@@ -1060,6 +1268,39 @@ function clearAnswers() {
         });
         taskContainer.classList.remove('correct', 'incorrect');
     }
+    else if (task.type === "checkbox-grid") {
+        const checkboxes = document.querySelectorAll(`.checkbox-grid input[name="task-${task.id}"]`);
+        const labels = document.querySelectorAll(`.checkbox-grid label`);
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+        
+        labels.forEach(label => {
+            label.style.color = "";
+        });
+        
+        task.userAnswers = [];
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+    else if (task.type === "fill-in-blank") {
+        const input = document.getElementById('fill-answer');
+        input.value = "";
+        input.style.border = "1px solid #ddd";
+        task.userAnswer = "";
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+    else if (task.type === "drag-match-table") {
+        const dropZones = document.querySelectorAll('.match-table .drop-zone');
+        
+        dropZones.forEach(zone => {
+            zone.textContent = '';
+            zone.style.backgroundColor = '';
+        });
+        
+        task.userAnswers = {};
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
 
     taskContainer.classList.remove('correct', 'incorrect');
 }
@@ -1068,7 +1309,7 @@ function clearAnswers() {
 clearAnswersButton.addEventListener('click', clearAnswers);
 
 document.getElementById('back-to-list').addEventListener('click', () => {
-    window.location.href = '1.2.html';
+    window.location.href = '1.3.html';
 });
 // Инициализация
 renderTask();

@@ -642,25 +642,78 @@ checkAnswerButton.addEventListener('click', checkTask);
 // Скачивание результатов
 document.getElementById('download-results').addEventListener('click', () => {
     let textContent = `Результаты выполнения заданий по теме "${topic.name}":\n\n`;
+    
     topic.tasks.forEach(t => {
         textContent += `Задание ${t.id}: ${t.question}\n`;
-        if (t.type === "select") {
+        
+        if (t.type === "select" || t.type === "select2") {
             t.options.forEach((option, index) => {
-                textContent += `- ${option.text}: ${t.userAnswers[index] || "Нет ответа"}\n`;
+                const userAnswer = t.userAnswers[index] || "Нет ответа";
+                const status = userAnswer === option.correct ? "✓" : "✗";
+                textContent += `- ${option.text}: ${userAnswer} ${status}\n`;
             });
-        } else if (t.type === "radio") {
-            textContent += `- Ваш ответ: ${t.userAnswer || "Нет ответа"}\n`;
-        } else if (t.type === "drag-and-drop") {
-            textContent += `- Ваши ответы: ${JSON.stringify(t.userAnswers, null, 2)}\n`;
+        } 
+        else if (t.type === "radio") {
+            const status = t.userAnswer === t.options.find(opt => opt.correct)?.text ? "✓" : "✗";
+            textContent += `- Ваш ответ: ${t.userAnswer || "Нет ответа"} ${status}\n`;
+        } 
+        else if (t.type === "drag-and-drop" || t.type === "drag-and-drop-order") {
+            textContent += `- Ваши ответы: ${JSON.stringify(t.userAnswers || t.userOrder, null, 2)}\n`;
+        } 
+        else if (t.type === "text-input") {
+            const status = t.userAnswer === t.correctAnswer ? "✓" : "✗";
+            textContent += `- Ваш ответ: ${t.userAnswer || "Нет ответа"} ${status} (Правильный: ${t.correctAnswer})\n`;
+        } 
+        else if (t.type === "table-fill") {
+            textContent += `- Ваши ответы:\n`;
+            t.userAnswers.forEach((answer, idx) => {
+                textContent += `  Строка ${idx + 1}: Источник - ${answer.source || "Нет ответа"}, Приёмник - ${answer.receiver || "Нет ответа"}\n`;
+            });
+        } 
+        else if (t.type === "checkbox-multiple") {
+            textContent += `- Выбранные варианты:\n`;
+            t.options.forEach((option, index) => {
+                const isSelected = t.userAnswers.includes(index);
+                const status = option.correct === isSelected ? "✓" : "✗";
+                textContent += `  ${option.text}: ${isSelected ? "Да" : "Нет"} ${status}\n`;
+            });
+        } 
+        else if (t.type === "drag-drop-table") {
+            textContent += `- Ваши ответы:\n`;
+            t.userAnswers.forEach((row, i) => {
+                textContent += `  Строка ${i + 1}: ${row[0] || "Пусто"} | ${row[1] || "Пусто"}\n`;
+            });
+        } 
+        else if (t.type === "multiple-text-input") {
+            textContent += `- Ваши ответы:\n`;
+            t.inputs.forEach((input, i) => {
+                const status = input.userAnswer === input.correctAnswer ? "✓" : "✗";
+                textContent += `  ${input.label} ${input.userAnswer || "Нет ответа"} ${status} (Правильный: ${input.correctAnswer})\n`;
+            });
         }
+        
         textContent += "\n";
     });
+
+    // Добавляем общую статистику
+    const totalTasks = topic.tasks.length;
+    const completedTasks = topic.tasks.filter(t => {
+        if (t.type === "checkbox-multiple") {
+            return t.userAnswers.length > 0;
+        }
+        return t.userAnswer || t.userAnswers?.length > 0;
+    }).length;
+    
+    textContent += `\nВыполнено заданий: ${completedTasks} из ${totalTasks}\n`;
+    textContent += `Процент выполнения: ${Math.round((completedTasks / totalTasks) * 100)}%\n`;
 
     const blob = new Blob([textContent], { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `results-${topic.name}.txt`;
+    link.download = `results-${topic.name.replace('232323')}.txt`;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 });
 
 // КНОПКА ОЧИСТКИ ОТВЕТОВ
