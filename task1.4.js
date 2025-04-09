@@ -2,176 +2,199 @@
 const topics = [
     {
         id: 1,
-        name: "Устройство компьютера, 12 заданий",
+        name: "Кодирование информации, 16 заданий",
         tasks: [
             {
-                id: 1, 
-                question: "Найди верные ответы. Какие устройства относятся к внутренним устройствам ПК?",
+                id: 1,
+                question: "Отметь языки, которые относятся к естественным:",
                 type: "checkbox-grid",
                 options: [
-                    { text: "клавиатура", correct: false },
-                    { text: "блок питания", correct: true },
-                    { text: "сетевая карта", correct: true },
-                    { text: "трекбол", correct: false },
-                    { text: "процессор", correct: true },
-                    { text: "сканер", correct: false }
+                    { text: "латышский", correct: true },
+                    { text: "C++", correct: false },
+                    { text: "ноты", correct: false },
+                    { text: "язык мимики", correct: true },
+                    { text: "Pascal", correct: false },
+                    { text: "польский", correct: true },
+                    { text: "язык жестов", correct: true },
+                    { text: "математические символы", correct: false },
+                    { text: "итальянский", correct: true },
+                    { text: "Python", correct: false }
                 ],
-                userAnswers: [] // Будет хранить индексы выбранных ответов
+                userAnswers: []
             },
             {
-                id: 2, 
-                question: "Найди верные ответы. Какие устройства относятся ко внешним устройствам ПК?",
+                id: 2,
+                question: "Восстановление начального текста называется:",
+                type: "select2",
+                options: [
+                    { text: "", correct: "дешифрованием" },
+                ],
+                userAnswers: []
+            },
+            {
+                id: 3,
+                question: "Какое количество цифр 4 встречается в записи чисел 15, 16, 17... 20, 21 в системе счисления с основанием 7? Выберите верный ответ.",
+                type: "select3",
+                options: [
+                    { text: "", correct: "1" },
+                ],
+                userAnswers: []
+            },
+            {
+                id: 4,
+                question: "Запишите верные утверждения <br><br> 1. Сэмюэл Морзе изобрел телеграф в 1837 году.<br> 2. Для кодировки короткого сигнала используется тире.<br> 3. Код азбуки Морзе является неравномерным.<br> 4. В азбуке Морзе длинные сигналы представлены в виде тире.<br> 5. Для кодирования цифры 7 кодом Бодо необходимо использовать 5 бит.",
+                description: "",
                 type: "checkbox-grid",
                 options: [
-                    { text: "Процессор", correct: false },
-                    { text: "Камера", correct: true },
-                    { text: "Сетевая карта", correct: false },
-                    { text: "Монитор", correct: true },
-                    { text: "Микрофон", correct: true },
-                    { text: "Видеокарта", correct: false }
+                    { text: "1", correct: true },
+                    { text: "2", correct: false },
+                    { text: "3", correct: true },
+                    { text: "4", correct: true },
+                    { text: "5", correct: true },
                 ],
-                userAnswers: [] // Будет хранить индексы выбранных ответов
+                userAnswers: []
             },
             {
-                id: 3, 
-                question: "Найди верные ответы. Какие характеристики процессора являются более значимыми?",
-                type: "checkbox-grid",
-                options: [
-                    { text: "Мощность", correct: false },
-                    { text: "Заполненность", correct: false },
-                    { text: "Ускорение", correct: false },
-                    { text: "Архитектура", correct: true },
-                    { text: "Размер чипсета", correct: false },
-                    { text: "Время", correct: false },
-                    { text: "Производительность", correct: true },
-                    { text: "Тактовая частота", correct: true }
-                ],
-                userAnswers: [] // Будет хранить индексы выбранных ответов
-            },
-            {
-                id: 4, 
-                question: "Выбери правильные ответы. Какую функцию выполняют контроллеры на материнской плате?",
-                type: "checkbox-grid",
-                options: [
-                    { text: "обеспечивают взаимодействие с периферийными устройствами", correct: true },
-                    { text: "помогают процессору", correct: false },
-                    { text: "обеспечивают хранение данных", correct: false },
-                    { text: "контролируют процессор", correct: false },
-                    { text: "контролируют скорость передачи данных по сети", correct: true }
-                ],
-                userAnswers: [],
-                description: `
-                `
-            },
-            {
-                id: 5,
-                question: "Что относится к основным характеристикам оперативной памяти?",
-                type: "radio",
-                options: [
-                    { text: "Масса", correct: false },
-                    { text: "Время", correct: false },
-                    { text: "Скорость работы", correct: true },
-                    { text: "Давление", correct: false }
-                ],
-                userAnswer: "",
+                id: 5, // Убедитесь, что ID уникален
+                question: "Раставь разряды над цифрами числа",
+                type: "digit-place-match",
+                number: "126,22",
+                digits: ["1", "2", "6", "2", "2"],
+                places: {
+                    "1": ["1", "0"],     // 1 в разряде единиц (10^0)
+                    "2": ["2", "-1"],    // Первая 2 в разряде десятых (10^-1)
+                    "6": ["1", "1"],     // 6 в разряде десятков (10^1)
+                    "2": ["2", "-2"],    // Вторая 2 в разряде сотых (10^-2)
+                    "2": ["2", "0"]      // Если есть другая 2 в разряде единиц
+                },
+                dragItems: ["-2", "-1", "0", "1", "2"],
+                userAnswers: {} // Будет хранить { digitIndex: "place" }
             },
             {
                 id: 6,
-                question: "Что относится к основным характеристикам видеокарты?",
-                type: "radio",
-                options: [
-                    { text: "Масса", correct: false },
-                    { text: "Система охлаждения", correct: false },
-                    { text: "Архитектура", correct: false },
-                    { text: "Модель графического процессора", correct: true }
-                ],
-                userAnswer: "",
+                question: "Переведи двоичное число 100010,1 в систему счисления с основанием 10",
+                description: `
+
+                `,
+                type: "text-input",
+                correctAnswer: "34,5",
+                userAnswer: ""
             },
             {
                 id: 7,
-                question: "Выбери правильные ответы. Какие характеристики относятся к жёсткому диску?",
-                type: "checkbox-grid",
-                options: [
-                    { text: "объём", correct: true },
-                    { text: "сила", correct: false },
-                    { text: "импульс", correct: false },
-                    { text: "интерфейс подключения", correct: true }
-                ],
-                userAnswers: [],
+                question: "Переведи шестнадцатеричное число 45A8D в десятичную систему счисления",
                 description: `
 
-                `
+                `,
+                type: "text-input",
+                correctAnswer: "285325",
+                userAnswer: ""
             },
             {
-                id: 8, 
-                question: "Отметь верный ответ. Выбери принцип, которого не существует.",
-                type: "radio", // Новый тип для одиночного выбора
-                options: [
-                    { text: "принцип программного управления", correct: false },
-                    { text: "принцип однородности памяти", correct: false },
-                    { text: "принцип адресности памяти", correct: false },
-                    { text: "принцип хаотичной организации памяти", correct: true }
-                ],
-                userAnswer: null,
+                id: 8,
+                question: "Выполни перевод десятичного числа 316 в восьмеричную систему счисления, в ответ запишите только число, без степени.",
                 description: `
 
-                `
+                `,
+                type: "text-input",
+                correctAnswer: "474",
+                userAnswer: ""
             },
             {
-                id: 9, 
-                question: "Добавь недостающее слово в предложение.",
-                description: "Любой компьютер должен содержать в себе центральный ______, внутреннюю память (оперативную), внешнюю память (постоянную), устройства ввода, а также устройства вывода.",
-                type: "fill-in-blank",
-                correctAnswer: "процессор",
-                userAnswer: "",
-                placeholder: "Введите недостающее слово",
-                alternatives: ["процессор", "процессорный", "процессорный блок"] // Допустимые варианты
+                id: 9,
+                question: "Выполни перевод десятичного числа 688 в шестнадцатеричную систему счисления, буквы в ответе нужно писать с английской раскладки клавиатуры",
+                description: `
+
+                `,
+                type: "text-input",
+                correctAnswer: "2B0",
+                userAnswer: ""
             },
             {
-                id: 10, 
-                question: "Добавь недостающее слово в предложение.",
-                description: "Ни для кого уже не секрет, что современные компьютеры хранят всю информацию в виде ______ кода",
-                type: "fill-in-blank",
-                correctAnswer: "двоичного",
-                userAnswer: "",
-                placeholder: "Введите недостающее слово",
-                alternatives: ["Двоичного"] // Допустимые варианты
+                id: 10,
+                question: "В системе счисления с некоторым основанием десятичное число 13 записывается в виде 111. Выберите это основание.",
+                type: "radio",
+                options: [
+                    { text: "3", correct: true },
+                    { text: "-4", correct: false },
+                    { text: "5", correct: false },
+                    { text: "9", correct: false }
+                ],
+                userAnswer: ""
             },
             {
                 id: 11,
-                question: "Выполни задание на соответствие. Установи соответствие между номерами принципов и их названиями.",
-                type: "drag-match-table",
-                table: {
-                    headers: ["Номер принципа", "Название принципа"],
-                    rows: [
-                        { id: 1, label: "Первый", correct: "Принцип программного управления" },
-                        { id: 2, label: "Второй", correct: "Принцип двоичного кодирования" },
-                        { id: 3, label: "Третий", correct: "Принцип однородности памяти" },
-                        { id: 4, label: "Четвёртый", correct: "Принцип адресности памяти" },
-                        { id: 5, label: "Пятый", correct: "Принцип иерархической организации памяти" },
-                        { id: 6, label: "Шестой", correct: "Состав основных компонентов ПК" }
-                    ]
-                },
-                dragItems: [
-                    "Принцип однородности памяти",
-                    "Принцип управляемости процессора",
-                    "Состав основных компонентов ПК",
-                    "Принцип адресности памяти",
-                    "Принцип программного управления",
-                    "Принцип иерархической организации памяти",
-                    "Принцип двоичного кодирования"
+                question: "Декодируй сообщение, принимая во внимание то, что в качестве ключа используется расположение букв на клавиатуре твоего компьютера. Сообщение: rjvgm.nthysq dbhec. <br>В ответе укажи раскодированное сообщение с маленькой буквы без знаков препинания.",
+                description: `
+
+                `,
+                type: "text-input",
+                correctAnswer: "компьютерный вирус",
+                userAnswer: ""
+            },
+            {
+                id: 12,
+                question: "Дополни развёрнутую запись числа 1256,52₈",
+                type: "expanded-form-match",
+                expression: "1256,52₈ = 1×8³ + 2×8² + 5×8¹ + 6×□ + 5×8⁻¹ + □×8⁻²",
+                parts: [
+                    { position: "first", correct: "0", userAnswer: "" },  // Для 6×□
+                    { position: "second", correct: "2", userAnswer: "" }   // Для □×8⁻²
                 ],
+                dragItems: ["0", "-1", "2", "3", "8"],
                 userAnswers: {}
             },
             {
-                id: 12, 
-                question: "Добавь недостающее слово в предложение.",
-                description: "С ростом объема памяти поиск нужной информации существенно ______",
-                type: "fill-in-blank",
-                correctAnswer: "Усложняется",
+                id: 13,
+                question: "Дана развёрнутая запись числа. Напиши свёрнутую запись числа и основание системы счисления",
+                type: "expanded-to-compact",
+                expression: "1×16² + 2×16¹ + 12×16⁰ + 13×16⁻¹ + 10×16⁻²",
+                correctNumber: "300",
+                correctBase: "16",
+                userAnswers: {
+                    number: "",
+                    base: ""
+                },
+                description: `
+
+                `
+            },
+            {
+                id: 14,
+                question: "Выберите результат вычетания двух римских чисел: DXLVI - CCCLXVII",
+                type: "radio",
+                options: [
+                    { text: "VI", correct: false },
+                    { text: "CLXXIX", correct: true },
+                    { text: "113", correct: false },
+                    { text: "CCCXXI", correct: false }
+                ],
                 userAnswer: "",
-                placeholder: "Введите недостающее слово",
-                alternatives: ["усложняется"] // Допустимые варианты
+            },
+            {
+                id: 15,
+                question: "Какое из неравенств выполняется для чисел A=227<sub>8</sub>, B=73<sub>16</sub> и C=2112<sub>4</sub>?",
+                type: "inequality-choice",
+                options: [
+                    { text: "A = B = C", correct: false },
+                    { text: "A > B > C", correct: false },
+                    { text: "A > C > B", correct: true },
+                    { text: "B < A < C", correct: false }
+                ],
+                explanation: `
+
+                `,
+                userAnswer: null
+            },
+            {
+                id: 16,
+                question: "Дано выражение: 2<sup>320</sup> + 2<sup>226</sup> + 4<sup>28</sup> - 6 <br>Найди его значение, если его записали в двоичной системе счисления. Сколько единиц в записи этого числа?",
+                type: "text-input",
+                correctAnswer: "5",
+                userAnswer: "",
+                description: `
+
+                `
             }
         ]
     }
@@ -205,11 +228,12 @@ function renderTask() {
                     <p>${option.text}</p>
                     <select id="answer-${index}">
                         <option value="">Выберите ответ</option>
-                        <option value="Визуальная">Визуальная</option>
-                        <option value="Вкусовая">Вкусовая</option>
-                        <option value="Слуховая">Слуховая</option>
-                        <option value="Тактильная">Тактильная</option>
-                        <option value="Обонятельная">Обонятельная</option>
+                        <option value="1">1</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="3">3</option>
+                        <option value="10">10</option>
+                        <option value="Не встречается">Не встречается</option>
                     </select>
                 </div>
             `;
@@ -221,12 +245,43 @@ function renderTask() {
                         <p>${option.text}</p>
                         <select id="answer-${index}">
                             <option value="">Выберите ответ</option>
-                            <option value="19">19</option>
-                            <option value="27">27</option>
-                            <option value="9">9</option>
-                            <option value="47">47</option>
-                            <option value="29">29</option>
-                            <option value="37">37</option>
+                            <option value="переводом">переводом</option>
+                            <option value="передачей">передачей</option>
+                            <option value="корректором">корректором</option>
+                            <option value="кодом">кодом</option>
+                            <option value="дешифрованием">дешифрованием</option>
+                        </select>
+                    </div>
+                `;
+            });
+    } else if (task.type === "select3") {
+            task.options.forEach((option, index) => {
+                taskContainer.innerHTML += `
+                    <div>
+                        <p>${option.text}</p>
+                        <select id="answer-${index}">
+                            <option value="">Выберите ответ</option>
+                            <option value="1">1</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="3">3</option>
+                            <option value="10">10</option>
+                            <option value="Не встречается">Не встречается</option>
+                        </select>
+                    </div>
+                `;
+            });
+    } else if (task.type === "select4") {
+            task.options.forEach((option, index) => {
+                taskContainer.innerHTML += `
+                    <div>
+                        <p>${option.text}</p>
+                        <select id="answer-${index}">
+                            <option value="">Выберите ответ</option>
+                            <option value="&#lt;">&#lt</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="3">3</option>
                         </select>
                     </div>
                 `;
@@ -507,6 +562,221 @@ function renderTask() {
         
         initDragAndDropMatch();
     }
+    else if (task.type === "digit-place-match") {
+        taskContainer.innerHTML += `
+            <div class="number-display">Число: ${task.number}</div>
+            <table class="digit-place-table">
+                <tr class="places-row">
+                    ${task.digits.map((digit, index) => 
+                        `<td class="place-drop" data-digit="${digit}" data-index="${index}">
+                            ${task.userAnswers[index] || " "}
+                        </td>`
+                    ).join('')}
+                </tr>
+                <tr class="digits-row">
+                    ${task.digits.map(digit => `<td>${digit}</td>`).join('')}
+                </tr>
+            </table>
+            <div class="drag-items-container">
+                ${task.dragItems.map(item => `
+                    <div class="drag-place" draggable="true">${item}</div>
+                `).join('')}
+            </div>
+        `;
+        
+        initDigitPlaceDrag();
+    }
+    else if (task.type === "expanded-form-match") {
+        // Разбиваем выражение на части, чтобы вставить поля для ответов
+        const exprParts = task.expression.split('□');
+        
+        taskContainer.innerHTML = `
+            <h3>Задание ${task.id}: ${task.question}</h3>
+            <div class="expression-container">
+                <div class="expression-formula">
+                    ${exprParts[0]}
+                    <span class="formula-drop" data-part="first">□</span>
+                    ${exprParts[1]}
+                    <span class="formula-drop" data-part="second">□</span>
+                    ${exprParts[2]}
+                </div>
+                <div class="drag-items-container">
+                    ${task.dragItems.map(item => `
+                        <div class="drag-option" draggable="true">${item}</div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        initFormulaDrag();
+    }
+    else if (task.type === "expanded-to-compact") {
+        taskContainer.innerHTML += `
+            <div class="expanded-expression">
+                <p>${task.expression}</p>
+            </div>
+            ${task.description || ''}
+            <div class="answer-fields">
+                <div class="answer-field">
+                    <label>Число:</label>
+                    <input type="text" id="number-answer" 
+                           placeholder="Введите число" 
+                           value="${task.userAnswers.number}">
+                </div>
+                <div class="answer-field">
+                    <label>Основание системы счисления:</label>
+                    <input type="text" id="base-answer" 
+                           placeholder="Введите основание" 
+                           value="${task.userAnswers.base}">
+                </div>
+            </div>
+            <button class="check-conversion">Ответить</button>
+        `;
+    
+        document.querySelector('.check-conversion').addEventListener('click', checkTask);
+    }
+    else if (task.type === "inequality-choice") {
+        taskContainer.innerHTML += `
+            <div class="inequality-task">
+                <p>Даны числа: A = 440₅, B = 100010011₂, C = 2034₅</p>
+                <div class="inequality-options">
+                    ${task.options.map((option, index) => `
+                        <label class="inequality-option">
+                            <input type="radio" name="inequality" value="${index}" 
+                                   ${task.userAnswer === index ? 'checked' : ''}>
+                            ${option.text}
+                        </label>
+                    `).join('')}
+                </div>
+                ${task.explanation || ''}
+            </div>
+        `;
+    
+        // Обработчик выбора
+        const radios = document.querySelectorAll('.inequality-option input');
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                task.userAnswer = parseInt(this.value);
+            });
+        });
+    }
+}
+
+
+function initFormulaDrag() {
+    const dragItems = document.querySelectorAll('.drag-option');
+    const dropZones = document.querySelectorAll('.formula-drop');
+
+    dragItems.forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            e.dataTransfer.setData('text/plain', this.textContent);
+            this.classList.add('dragging');
+        });
+        
+        item.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+        });
+    });
+
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('drop-hover');
+        });
+
+        zone.addEventListener('dragleave', function() {
+            this.classList.remove('drop-hover');
+        });
+
+        zone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drop-hover');
+            
+            const value = e.dataTransfer.getData('text/plain');
+            const part = this.dataset.part;
+            
+            this.textContent = value;
+            task.userAnswers[part] = value;
+        });
+    });
+}
+
+
+function initExponentDrag() {
+    const dragItems = document.querySelectorAll('.drag-exponent');
+    const dropZones = document.querySelectorAll('.exponent-drop');
+
+    dragItems.forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            e.dataTransfer.setData('text/plain', this.textContent);
+            this.classList.add('dragging');
+        });
+        
+        item.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+        });
+    });
+
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('drop-hover');
+        });
+
+        zone.addEventListener('dragleave', function() {
+            this.classList.remove('drop-hover');
+        });
+
+        zone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drop-hover');
+            
+            const exponent = e.dataTransfer.getData('text/plain');
+            const partIndex = this.dataset.part;
+            
+            this.textContent = exponent;
+            task.userAnswers[partIndex] = exponent;
+        });
+    });
+}
+
+
+function initDigitPlaceDrag() {
+    const dragItems = document.querySelectorAll('.drag-place');
+    const dropZones = document.querySelectorAll('.place-drop');
+
+    dragItems.forEach(item => {
+        item.addEventListener('dragstart', function(e) {
+            e.dataTransfer.setData('text/plain', this.textContent);
+            this.classList.add('dragging');
+        });
+        
+        item.addEventListener('dragend', function() {
+            this.classList.remove('dragging');
+        });
+    });
+
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('drop-hover');
+        });
+
+        zone.addEventListener('dragleave', function() {
+            this.classList.remove('drop-hover');
+        });
+
+        zone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drop-hover');
+            
+            const placeValue = e.dataTransfer.getData('text/plain');
+            const digitIndex = this.dataset.index;
+            
+            this.textContent = placeValue;
+            task.userAnswers[digitIndex] = placeValue;
+        });
+    });
 }
 
 
@@ -716,6 +986,57 @@ function checkTask() {
         
 
     } else if (task.type === "select2") {
+            task.userAnswers = [];
+            let allCorrect = true;
+    
+            task.options.forEach((option, index) => {
+                const select = document.getElementById(`answer-${index}`);
+                const userAnswer = select.value;
+                task.userAnswers.push(userAnswer);
+    
+                if (userAnswer !== option.correct) {
+                    allCorrect = false;
+                    select.style.border = "1px solid red";
+                } else {
+                    select.style.border = "1px solid green";
+                }
+            });
+    
+            if (allCorrect) {
+                taskContainer.classList.add('correct');
+                taskContainer.classList.remove('incorrect');
+            } else {
+                taskContainer.classList.add('incorrect');
+                taskContainer.classList.remove('correct');
+            }
+
+    } else if (task.type === "select3") {
+            task.userAnswers = [];
+            let allCorrect = true;
+    
+            task.options.forEach((option, index) => {
+                const select = document.getElementById(`answer-${index}`);
+                const userAnswer = select.value;
+                task.userAnswers.push(userAnswer);
+    
+                if (userAnswer !== option.correct) {
+                    allCorrect = false;
+                    select.style.border = "1px solid red";
+                } else {
+                    select.style.border = "1px solid green";
+                }
+            });
+    
+            if (allCorrect) {
+                taskContainer.classList.add('correct');
+                taskContainer.classList.remove('incorrect');
+            } else {
+                taskContainer.classList.add('incorrect');
+                taskContainer.classList.remove('correct');
+            }
+
+
+    } else if (task.type === "select1") {
             task.userAnswers = [];
             let allCorrect = true;
     
@@ -1053,17 +1374,157 @@ function checkTask() {
             taskContainer.classList.remove('correct');
         }
     }
+    else if (task.type === "digit-place-match") {
+        let allCorrect = true;
+        const dropZones = document.querySelectorAll('.place-drop');
+    
+        dropZones.forEach(zone => {
+            const digitIndex = zone.dataset.index;
+            const digit = zone.dataset.digit;
+            const userAnswer = task.userAnswers[digitIndex];
+            const correctPlace = task.places[digit][1]; // Берем второй элемент из массива (разряд)
+    
+            if (digit === ",") {
+                zone.style.backgroundColor = ''; // Запятая не проверяется
+                return;
+            }
+    
+            if (userAnswer === correctPlace) {
+                zone.style.backgroundColor = '#e8f5e9'; // Зеленый для правильного
+            } else {
+                zone.style.backgroundColor = '#ffebee'; // Красный для неправильного
+                allCorrect = false;
+            }
+        });
+    
+        if (allCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
+    else if (task.type === "expanded-form-match") {
+        let allCorrect = true;
+        const dropZones = document.querySelectorAll('.exponent-drop');
+    
+        dropZones.forEach(zone => {
+            const partIndex = zone.dataset.part;
+            const userAnswer = task.userAnswers[partIndex];
+            const correctAnswer = task.parts[partIndex].correctExponent;
+    
+            if (userAnswer === correctAnswer) {
+                zone.style.backgroundColor = '#e8f5e9';
+            } else {
+                zone.style.backgroundColor = '#ffebee';
+                allCorrect = false;
+            }
+        });
+    
+        if (allCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
+    else if (task.type === "expanded-form-match") {
+        let allCorrect = true;
+        const dropZones = document.querySelectorAll('.formula-drop');
+    
+        dropZones.forEach(zone => {
+            const part = zone.dataset.part;
+            const correctAnswer = task.parts.find(p => p.position === part).correct;
+            const userAnswer = task.userAnswers[part];
+    
+            if (userAnswer === correctAnswer) {
+                zone.style.backgroundColor = '#e8f5e9';
+                zone.style.color = '#2e7d32';
+            } else {
+                zone.style.backgroundColor = '#ffebee';
+                zone.style.color = '#c62828';
+                allCorrect = false;
+            }
+        });
+    
+        if (allCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
+    else if (task.type === "expanded-to-compact") {
+        const numberInput = document.getElementById('number-answer');
+        const baseInput = document.getElementById('base-answer');
+        
+        task.userAnswers.number = numberInput.value.trim().toUpperCase();
+        task.userAnswers.base = baseInput.value.trim();
+        
+        const isNumberCorrect = task.userAnswers.number === task.correctNumber;
+        const isBaseCorrect = task.userAnswers.base === task.correctBase;
+        
+        if (isNumberCorrect) {
+            numberInput.style.border = "1px solid #4CAF50";
+        } else {
+            numberInput.style.border = "1px solid #F44336";
+        }
+        
+        if (isBaseCorrect) {
+            baseInput.style.border = "1px solid #4CAF50";
+        } else {
+            baseInput.style.border = "1px solid #F44336";
+        }
+        
+        if (isNumberCorrect && isBaseCorrect) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
+    else if (task.type === "inequality-choice") {
+        if (task.userAnswer === null) {
+            alert("Выберите ответ!");
+            return;
+        }
+    
+        const selectedOption = task.options[task.userAnswer];
+        const optionElements = document.querySelectorAll('.inequality-option');
+        
+        optionElements.forEach((element, index) => {
+            const label = element;
+            if (task.options[index].correct) {
+                label.style.color = "#2e7d32";
+                label.style.fontWeight = "bold";
+            } else if (index === task.userAnswer) {
+                label.style.color = "#c62828";
+            }
+        });
+    
+        if (selectedOption.correct) {
+            taskContainer.classList.add('correct');
+            taskContainer.classList.remove('incorrect');
+        } else {
+            taskContainer.classList.add('incorrect');
+            taskContainer.classList.remove('correct');
+        }
+    }
 }
 // Навигация по заданиям
 prevButton.addEventListener('click', () => {
     if (taskId > 1) {
-        window.location.href = `task1.3.html?topic=${topicId}&task=${taskId - 1}`;
+        window.location.href = `task1.4.html?topic=${topicId}&task=${taskId - 1}`;
     }
 });
 
 nextButton.addEventListener('click', () => {
     if (taskId < topic.tasks.length) {
-        window.location.href = `task1.3.html?topic=${topicId}&task=${taskId + 1}`;
+        window.location.href = `task1.4.html?topic=${topicId}&task=${taskId + 1}`;
     }
 });
 
@@ -1196,6 +1657,13 @@ function clearAnswers() {
         });
         task.userAnswers = [];
      } else if (task.type === "select2") {
+            task.options.forEach((option, index) => {
+                const select = document.getElementById(`answer-${index}`);
+                select.value = "";
+                select.style.border = "";
+            });
+            task.userAnswers = [];
+    } else if (task.type === "select3") {
             task.options.forEach((option, index) => {
                 const select = document.getElementById(`answer-${index}`);
                 select.value = "";
@@ -1336,6 +1804,69 @@ function clearAnswers() {
         task.userAnswers = {};
         taskContainer.classList.remove('correct', 'incorrect');
     }
+    else if (task.type === "digit-place-match") {
+        const dropZones = document.querySelectorAll('.place-drop');
+        
+        dropZones.forEach(zone => {
+            zone.textContent = " ";
+            zone.style.backgroundColor = '';
+        });
+        
+        task.userAnswers = {};
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+    else if (task.type === "expanded-form-match") {
+        const dropZones = document.querySelectorAll('.exponent-drop');
+        
+        dropZones.forEach(zone => {
+            zone.textContent = "□";
+            zone.style.backgroundColor = '';
+        });
+        
+        task.userAnswers = {};
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+    else if (task.type === "expanded-form-match") {
+        const dropZones = document.querySelectorAll('.formula-drop');
+        
+        dropZones.forEach(zone => {
+            zone.textContent = "□";
+            zone.style.backgroundColor = '';
+            zone.style.color = '';
+        });
+        
+        task.userAnswers = {};
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+    else if (task.type === "expanded-to-compact") {
+        const numberInput = document.getElementById('number-answer');
+        const baseInput = document.getElementById('base-answer');
+        
+        numberInput.value = "";
+        baseInput.value = "";
+        numberInput.style.border = "";
+        baseInput.style.border = "";
+        
+        task.userAnswers = { number: "", base: "" };
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+    else if (task.type === "inequality-choice") {
+        const radios = document.querySelectorAll('.inequality-option input');
+        const labels = document.querySelectorAll('.inequality-option');
+        
+        radios.forEach(radio => {
+            radio.checked = false;
+        });
+        
+        labels.forEach(label => {
+            label.style.color = "";
+            label.style.fontWeight = "";
+        });
+        
+        task.userAnswer = null;
+        taskContainer.classList.remove('correct', 'incorrect');
+    }
+
 
     taskContainer.classList.remove('correct', 'incorrect');
 }
