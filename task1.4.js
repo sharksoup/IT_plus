@@ -1548,7 +1548,9 @@ document.getElementById('download-results').addEventListener('click', () => {
             textContent += `- Выбранные варианты:\n`;
             
             t.options.forEach((option, index) => {
-                const isSelected = t.userAnswers.includes(index);
+                const isSelected = Array.isArray(t.userAnswers) ? 
+                    t.userAnswers.includes(index) : 
+                    false;
                 const isCorrect = option.correct === isSelected;
                 const status = isCorrect ? "✓" : "✗";
                 
@@ -1557,90 +1559,144 @@ document.getElementById('download-results').addEventListener('click', () => {
                 if (!isCorrect) taskCorrect = false;
             });
             
-            if (taskCorrect && t.userAnswers.length > 0) correctCount++;
+            if (taskCorrect && Array.isArray(t.userAnswers) && t.userAnswers.length > 0) {
+                correctCount++;
+            }
             
         } else if (t.type === "radio") {
-            const isCorrect = t.userAnswer === t.options.find(opt => opt.correct)?.text;
-            const status = isCorrect ? "✓" : t.userAnswer ? "✗" : "Нет ответа";
+            const userAnswer = t.userAnswer || "";
+            const isCorrect = userAnswer === t.options.find(opt => opt.correct)?.text;
+            const status = isCorrect ? "✓" : userAnswer ? "✗" : "Нет ответа";
             
-            textContent += `- Ваш ответ: ${t.userAnswer || "Нет ответа"} ${status}\n`;
+            textContent += `- Ваш ответ: ${userAnswer || "Нет ответа"} ${status}\n`;
             if (isCorrect) correctCount++;
             
-        } else if (t.type === "text-input" || t.type === "fill-in-blank") {
-            const isCorrect = t.type === "fill-in-blank" 
-                ? (t.alternatives ? t.alternatives.some(alt => alt.toLowerCase() === t.userAnswer.toLowerCase()) 
-                                 : t.userAnswer.toLowerCase() === t.correctAnswer.toLowerCase())
-                : t.userAnswer === t.correctAnswer;
+        } else if (t.type === "text-input") {
+            const userAnswer = t.userAnswer || "";
+            const isCorrect = userAnswer === t.correctAnswer;
+            const status = isCorrect ? "✓" : userAnswer ? "✗" : "Нет ответа";
             
-            const status = isCorrect ? "✓" : t.userAnswer ? "✗" : "Нет ответа";
-            
-            textContent += `- Ваш ответ: ${t.userAnswer || "Нет ответа"} ${status}`;
-            if (t.type === "fill-in-blank") {
-                textContent += ` (Правильный: ${t.correctAnswer})`;
+            textContent += `- Ваш ответ: ${userAnswer} ${status}`;
+            if (isCorrect) {
+                correctCount++;
             }
             textContent += `\n`;
             
-            if (isCorrect && t.userAnswer) correctCount++;
+        } else if (t.type === "fill-in-blank") {
+            const userAnswer = t.userAnswer || "";
+            const isCorrect = t.alternatives ? 
+                t.alternatives.some(alt => alt.toLowerCase() === userAnswer.toLowerCase()) : 
+                userAnswer.toLowerCase() === t.correctAnswer.toLowerCase();
+            const status = isCorrect ? "✓" : userAnswer ? "✗" : "Нет ответа";
+            
+            textContent += `- Ваш ответ: ${userAnswer} ${status}`;
+            if (isCorrect) {
+                correctCount++;
+            }
+            textContent += `\n`;
             
         } else if (t.type === "drag-match-table") {
             let taskCorrect = true;
             textContent += `- Соответствия:\n`;
             
-            t.table.rows.forEach(row => {
-                const userAnswer = t.userAnswers[row.id];
-                const isCorrect = userAnswer === row.correct;
-                
-                textContent += `  ${row.label}: ${userAnswer || "Нет ответа"} ${isCorrect ? "✓" : "✗"}\n`;
-                
-                if (!isCorrect) taskCorrect = false;
-            });
-            
-            if (taskCorrect && Object.keys(t.userAnswers).length === t.table.rows.length) {
-                correctCount++;
+            if (t.userAnswers && typeof t.userAnswers === 'object') {
+                Object.entries(t.userAnswers).forEach(([rowId, userAnswer]) => {
+                    const correctAnswer = t.table.rows.find(r => r.id == rowId)?.correct;
+                    const isCorrect = userAnswer === correctAnswer;
+                    const status = isCorrect ? "✓" : "✗";
+                    
+                    textContent += `  ${rowId}: ${userAnswer || "Нет ответа"} ${status}\n`;
+                    
+                    if (!isCorrect) taskCorrect = false;
+                });
             }
+            
+            if (taskCorrect) correctCount++;
             
         } else if (t.type === "drag-drop-table") {
             let taskCorrect = true;
             textContent += `- Заполненная таблица:\n`;
             
-            t.userAnswers.forEach((row, i) => {
-                const correctRow = t.table.correctRows[i];
-                const isCorrect = row[0] === correctRow[0] && row[1] === correctRow[1];
-                
-                textContent += `  Строка ${i+1}: ${row[0] || "Пусто"} | ${row[1] || "Пусто"} ${isCorrect ? "✓" : "✗"}\n`;
-                
-                if (!isCorrect) taskCorrect = false;
-            });
+            if (Array.isArray(t.userAnswers)) {
+                t.userAnswers.forEach((row, i) => {
+                    const correctRow = t.table.correctRows[i];
+                    const isCorrect = row && correctRow && 
+                                     row[0] === correctRow[0] && 
+                                     row[1] === correctRow[1];
+                    const status = isCorrect ? "✓" : "✗";
+                    
+                    textContent += `  Строка ${i+1}: ${row[0] || "Пусто"} | ${row[1] || "Пусто"} ${status}\n`;
+                    
+                    if (!isCorrect) taskCorrect = false;
+                });
+            }
             
             if (taskCorrect) correctCount++;
+            
+        } else if (t.type === "expanded-to-compact") {
+            const userNumber = t.userAnswers?.number || "";
+            const userBase = t.userAnswers?.base || "";
+            const isNumberCorrect = userNumber === t.correctNumber;
+            const isBaseCorrect = userBase === t.correctBase;
+            const isCorrect = isNumberCorrect && isBaseCorrect;
+            
+            textContent += `- Ваш ответ: ${userNumber || "Нет ответа"} (основание: ${userBase || "Нет ответа"}) ${isCorrect ? "✓" : "✗"}\n`;
+            if (isCorrect) correctCount++;
+            
+        } else if (t.type === "digit-place-match") {
+            let taskCorrect = true;
+            textContent += `- Разряды:\n`;
+            
+            if (t.userAnswers && typeof t.userAnswers === 'object') {
+                Object.entries(t.userAnswers).forEach(([digitIndex, userAnswer]) => {
+                    const digit = t.digits[digitIndex];
+                    const correctPlace = t.places[digit]?.[1];
+                    const isCorrect = userAnswer === correctPlace;
+                    const status = isCorrect ? "✓" : "✗";
+                    
+                    textContent += `  Цифра ${digit}: разряд ${userAnswer || "Не указан"} ${status}\n`;
+                    
+                    if (!isCorrect) taskCorrect = false;
+                });
+            }
+            
+            if (taskCorrect) correctCount++;
+        } else if (t.type === "inequality-choice") {
+            const userAnswer = t.userAnswer !== null && t.userAnswer !== undefined ? 
+                t.options[t.userAnswer]?.text : "Нет ответа";
+            const isCorrect = t.userAnswer !== null && t.options[t.userAnswer]?.correct;
+            const status = isCorrect ? "✓" : "✗";
+            
+            textContent += `- Ваш выбор: ${userAnswer} ${status}\n`;
+            if (isCorrect) correctCount++;
         }
         
         // Добавляем пустую строку между заданиями
         textContent += "\n";
     });
 
-       // Добавляем статистику
-       const completionPercentage = totalTasks > 0 
-       ? Math.round((correctCount / totalTasks) * 100) 
-       : 0;
-   
-   textContent += `\nИтоговая статистика:\n`;
-   textContent += `- Правильных ответов: ${correctCount} из ${totalTasks}\n`;
-   textContent += `- Процент выполнения: ${completionPercentage}%\n`;
-   textContent += `- Дата: ${new Date().toLocaleString()}\n`;
+    // Добавляем статистику
+    const completionPercentage = totalTasks > 0 
+        ? Math.round((correctCount / totalTasks) * 100) 
+        : 0;
+    
+    textContent += `\nИтоговая статистика:\n`;
+    textContent += `- Правильных ответов: ${correctCount} из ${totalTasks}\n`;
+    textContent += `- Процент выполнения: ${completionPercentage}%\n`;
+    textContent += `- Дата: ${new Date().toLocaleString()}\n`;
 
-   // Создаем и скачиваем файл
-   const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-   const link = document.createElement('a');
-   const filename = `Результаты_${topic.name.replace(/[^а-яА-Я0-9]/g, '_')}_${new Date().toISOString().slice(0,10)}.txt`;
-   
-   link.href = URL.createObjectURL(blob);
-   link.download = filename;
-   link.style.display = 'none';
-   
-   document.body.appendChild(link);
-   link.click();
-   document.body.removeChild(link);
+    // Создаем и скачиваем файл
+    const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    const filename = `Результаты_${topic.name.replace(/[^а-яА-Я0-9]/g, '_')}_${new Date().toISOString().slice(0,10)}.txt`;
+    
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.style.display = 'none';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });
 
 // КНОПКА ОЧИСТКИ ОТВЕТОВ
