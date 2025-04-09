@@ -1931,7 +1931,7 @@ function clearAnswers() {
 clearAnswersButton.addEventListener('click', clearAnswers);
 
 document.getElementById('back-to-list').addEventListener('click', () => {
-    window.location.href = '1.3.html';
+    window.location.href = '1.4.html';
 });
 // Инициализация
 renderTask();
